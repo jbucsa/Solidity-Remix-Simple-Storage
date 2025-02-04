@@ -3,11 +3,19 @@
 pragma solidity >=0.8.19 <0.9.0; // Our versions and range of versions that will be acceptable.
 
 contract SimpleStorage{
+    // favoriteNumber get initalized to 0 if no value is represent
 
     uint256 favoriteNumber;
 
     function store( uint256 _favoriteNumber) public{
         favoriteNumber = _favoriteNumber;
+        favoriteNumber = favoriteNumber + 1;
+        retrieve(); // This transaction cost gas because it is inside a function that cost gas.
+    }
+
+    // view, pure : Functions you can call without sending a transaction
+    function retrieve() public view returns(uint256){
+        return favoriteNumber;
     }
 
 }
